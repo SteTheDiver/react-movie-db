@@ -1,0 +1,44 @@
+.MoviesList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //   align-items: center;
+  //   width: 100%;
+  //   margin: 0 auto;
+
+  .Grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+
+    .MovieContainer {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid red;
+      border-radius: 4px;
+      background: lightblue;
+    //   height: 30em;
+
+      .Image {
+        position: relative;
+        border-radius: 4px;
+        width: 100%;
+        height: 30em;
+        object-fit: cover;
+      }
+
+      &:hover .Info {
+        height: 30px;
+        visibility: visible;
+      }
+      .Info {
+        height: 0;
+        top: 0;
+        // position: absolute;
+        visibility: hidden;
+        background: grey;
+        transition: height 0.3s;
+      }
+    }
+  }
+}
