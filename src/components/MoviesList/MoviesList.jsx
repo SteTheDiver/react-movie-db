@@ -3,8 +3,13 @@ import { useGlobalContext } from "../../context";
 import styles from "./MoviesList.module.scss";
 import { Link } from "react-router-dom";
 
+const url =
+  "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
+
 function MoviesList() {
   const { movies, loading } = useGlobalContext();
+
+  console.log(movies, "movies");
 
   if (loading) {
     return <div className="loading">Loading</div>;
@@ -20,12 +25,21 @@ function MoviesList() {
             imdbID: id,
           } = movie;
           return (
-            <Link to={`movies/${id}`} key={id}>
-              <article className={styles.MovieContainer}>
-                <img className={styles.Image} src={poster} alt={title} />
+            <Link
+              to={`movies/${id}`}
+              key={id}
+              className={styles.MovieContainer}
+            >
+              <article>
+                <img
+                  className={styles.Image}
+                  src={poster === "N/A" ? url : poster}
+                  alt={title}
+                />
+
                 <div className={styles.Info}>
-                  <span>{title}</span>
-                  {/* <span>{year}</span> */}
+                  <span className={styles.Text}>{title}</span>
+                  <span className={styles.Text}>{year}</span>
                 </div>
               </article>
             </Link>
