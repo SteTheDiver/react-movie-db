@@ -1,0 +1,29 @@
+.SearchBar {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+
+  .Form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: none;
+
+    .Input {
+      border-bottom: 1px solid black;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      background: transparent;
+      padding: 0 0 5px 5px;
+      font-size: 15px;
+    }
+  }
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  font-size: 20px;
+}
