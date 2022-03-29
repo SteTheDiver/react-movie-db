@@ -7,7 +7,7 @@ const url =
   "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
 
 function MoviesList() {
-  const { movies, loading } = useGlobalContext();
+  const { movies, loading, filtered } = useGlobalContext();
 
   console.log(movies, "movies");
 
@@ -17,12 +17,11 @@ function MoviesList() {
   return (
     <main className={styles.MoviesList}>
       <section className={styles.Grid}>
-        {movies.map((movie) => {
+        {filtered.map((movie) => {
           const {
-            Title: title,
-            Poster: poster,
-            Year: year,
-            imdbID: id,
+            id,
+            backdrop_path,
+            title,
           } = movie;
           return (
             <Link
@@ -33,13 +32,17 @@ function MoviesList() {
               <article>
                 <img
                   className={styles.Image}
-                  src={poster === "N/A" ? url : poster}
+                  src={
+                    backdrop_path !== null
+                      ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+                      : url
+                  }
                   alt={title}
                 />
 
                 <div className={styles.Info}>
                   <span className={styles.Text}>{title}</span>
-                  <span className={styles.Text}>{year}</span>
+                  {/* <span className={styles.Text}>{year}</span> */}
                 </div>
               </article>
             </Link>
