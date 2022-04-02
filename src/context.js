@@ -14,31 +14,53 @@ const AppProvider = ({ children }) => {
 
   const api = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
+  
+  
   // const url = `${API_ENDPOINT}&s=${query}`;
+  
+  // const fetchMovies = async (url) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
+  //     if (data.results) {
+  //       setMovies(data.results);
+  //       setFiltered(data.results);
+  //       setError({ show: false, message: "" });
+  //       console.log(data.results);
+  //     } else {
+  //       setError({ show: true, message: data.Error });
+  //     }
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const fetchMovies = async (url) => {
-    setLoading(true);
+    setLoading(true)
     try {
-      const response = await fetch(url);
-      const data = await response.json();
-      if (data.results) {
-        setMovies(data.results);
-        setFiltered(data.results);
-        setError({ show: false, message: "" });
-        console.log(data.results);
-      } else {
-        setError({ show: true, message: data.Error });
-      }
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+      const response = await fetch(url)
+      const data = await response.json()
 
+      if (data.Response === 'True') {
+        setMovies(data.Search || data)
+
+        setError({ show: false, msg: '' })
+      } else {
+        setError({ show: true, msg: data.Error })
+      }
+      setLoading(false)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
+  const apiOmdb = `http://www.omdbapi.com/?apikey=48050f69&s=${query}`;
   const endpoint = `https://api.themoviedb.org/3/search/movie?query=${query}${api}`;
 
   useEffect(() => {
-    fetchMovies(endpoint);
+    fetchMovies(apiOmdb);
   }, [query]);
 
   return (
