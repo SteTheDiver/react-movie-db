@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 const url =
   "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
 
-function MoviesList() {
-  const { movies, loading, filtered } = useGlobalContext();
+const imageUrl = "https://image.tmdb.org/t/p/w500";
 
-  console.log(movies, "movies");
+function MoviesList() {
+  const { movies, popular, loading, filtered } = useGlobalContext();
+
+  const moviesArray = window.location.pathname == "/popular" ? filtered : movies;
 
   if (loading) {
     return <div className="loading">Loading</div>;
@@ -17,12 +19,20 @@ function MoviesList() {
   return (
     <main className={styles.MoviesList}>
       <section className={styles.Grid}>
-        {filtered.map((movie) => {
+        {moviesArray.map((movie) => {
           const {
-            id,
+            Id: id,
             backdrop_path,
+            Poster,
             title,
+            Title: tmdbTitle,
           } = movie;
+          const customImage =
+            window.location.pathname !== "/popular"
+              ? Poster
+              : imageUrl + backdrop_path;
+          const customTitle =
+            window.location.pathname !== "/popular" ? tmdbTitle : title;
           return (
             <Link
               to={`movies/${id}`}
@@ -33,16 +43,15 @@ function MoviesList() {
                 <img
                   className={styles.Image}
                   src={
-                    backdrop_path !== null
-                      ? `https://image.tmdb.org/t/p/w500${backdrop_path}`
+                    Poster || (backdrop_path !== null && "N/A")
+                      ? customImage
                       : url
                   }
                   alt={title}
                 />
 
                 <div className={styles.Info}>
-                  <span className={styles.Text}>{title}</span>
-                  {/* <span className={styles.Text}>{year}</span> */}
+                  <span className={styles.Text}>{customTitle}</span>
                 </div>
               </article>
             </Link>
