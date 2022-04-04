@@ -14,7 +14,6 @@ function Home() {
       }}
     >
       <SearchBar />
-      <Filters />
       <MoviesList />
     </div>
   );
