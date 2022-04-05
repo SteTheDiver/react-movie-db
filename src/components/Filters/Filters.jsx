@@ -4,22 +4,22 @@ import { useGlobalContext } from "../../context";
 import styles from "./Filters.module.scss";
 
 function Filters() {
-  const { movies, activeGenre, setActiveGenre, setFiltered } =
+  const { popular, activeGenre, setActiveGenre, setFiltered } =
     useGlobalContext();
 
   useEffect(() => {
     if (activeGenre === 0) {
-      setFiltered(movies);
+      setFiltered(popular);
       return;
     }
-    const filtered = movies.filter((movie) =>
+    const filtered = popular.filter((movie) =>
       movie.genre_ids.includes(activeGenre)
     );
 
     setFiltered(filtered);
   }, [activeGenre]);
 
-  console.log(movies);
+  console.log(popular);
   return (
     <div>
       <button
