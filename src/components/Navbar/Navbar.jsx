@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./Navbar.module.scss";
@@ -7,6 +6,8 @@ import styles from "./Navbar.module.scss";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import CloseIcon from "@mui/icons-material/Close";
 // import { links } from "../../data";
+
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
@@ -29,27 +30,29 @@ function Navbar() {
           }
         >
           <ul className={styles.Links}>
-                <li className={styles.Link} >
-                  <Link to="/" className={styles.Item} onClick={toggleLinks}>
-                    <span className={styles.Item}>Home</span>
-                  </Link>
-                </li>
-                <li className={styles.Link} >
-                  <Link to="/popular" className={styles.Item} onClick={toggleLinks}>
-                    <span className={styles.Item}>Popular</span>
-                  </Link>
-                </li>
-                <li className={styles.Link} >
-                  <Link to="/" className={styles.Item} onClick={toggleLinks}>
-                    <span className={styles.Item}>Watch List</span>
-                  </Link>
-                </li>
+            <li className={styles.Link}>
+              <Link to="/" className={styles.Item} onClick={toggleLinks}>
+                <span className={styles.Item}>Home</span>
+              </Link>
+            </li>
+            <li className={styles.Link}>
+              <Link to="/popular" className={styles.Item} onClick={toggleLinks}>
+                <span className={styles.Item}>Popular</span>
+              </Link>
+            </li>
+            <li className={styles.Link}>
+              <Link
+                to="/watchList"
+                className={styles.Item}
+                onClick={toggleLinks}
+              >
+                <span className={styles.Item}>Watch List</span>
+              </Link>
+            </li>
           </ul>
         </aside>
         <section className={styles.Logo}>
-          <Link className={styles.LogoLink} to="/">
-            The CoffeeShop
-          </Link>
+          <SearchBar />
         </section>
       </div>
     </nav>
