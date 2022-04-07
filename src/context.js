@@ -15,13 +15,13 @@ const AppProvider = ({ children }) => {
 
   // const url = `${API_ENDPOINT}&s=${query}`;
 
-  const fetchPopular = async (url) => {
+  const fetchMovies = async (url) => {
     setLoading(true);
     try {
       const response = await fetch(url);
       const data = await response.json();
       if (data.results) {
-        setPopular(data.results);
+        setMovies(data.results);
         // setFiltered(data.results);
         setError({ show: false, message: "" });
         console.log(data.results);
@@ -34,35 +34,36 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const fetchMovies = async (url) => {
-    setLoading(true);
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
+  // const fetchMovies = async (url) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch(url);
+  //     const data = await response.json();
 
-      if (data.Response === "True") {
-        setMovies(data.Search || data);
+  //     if (data.Response === "True") {
+  //       setMovies(data.Search || data);
 
-        setError({ show: false, msg: "" });
-      } else {
-        setError({ show: true, msg: data.Error });
-      }
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //       setError({ show: false, msg: "" });
+  //     } else {
+  //       setError({ show: true, msg: data.Error });
+  //     }
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const apiOmdb = `http://www.omdbapi.com/?apikey=48050f69&s=${query}`;
   const endpoint = `https://api.themoviedb.org/3/movie/popular?${api}`;
+  const secondEndPoint = `https://api.themoviedb.org/3/discover/movie?${api}`;
 
   useEffect(() => {
-    fetchMovies(apiOmdb);
+    fetchMovies(secondEndPoint);
   }, [query]);
 
-  useEffect(()=> {
-    fetchPopular(endpoint)
-  }, [])
+  // useEffect(()=> {
+  //   fetchPopular(secondEndPoint)
+  // }, [])
 
   return (
     <AppContext.Provider
