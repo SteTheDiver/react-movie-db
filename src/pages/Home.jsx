@@ -10,10 +10,10 @@ function Home() {
         display: "flex",
         flexDirection: "column",
         margin: "0 auto",
-        width: "70%",
+        width: "80%",
       }}
     >
-      <SearchBar />
+      {/* <SearchBar /> */}
       <MoviesList />
     </div>
   );
