@@ -1,19 +1,21 @@
 .Button, .ActiveButton {
-  border-radius: 4px;
-  padding: 5px 5px;
+  border-radius: 15px;
+  padding: 8px;
   margin-right: 20px;
   border: none;
   background: rgb(221, 208, 208);
+  background: #1db989;
   color: white;
+  // color: #071423;
   cursor: pointer;
+  min-width: 80px;
+  font-size: 14px;
   
-  &:hover {
-    background: rgb(184, 178, 178);
-  }
 }
 
 .ActiveButton {
-  background: rgb(0, 110, 255);
+  border: 2px solid whitesmoke;
+  
 }
 
 

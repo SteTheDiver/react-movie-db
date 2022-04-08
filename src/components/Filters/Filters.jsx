@@ -52,18 +52,6 @@ function Filters() {
       >
         Science Fiction
       </button>
-      <button
-        onClick={() => setActiveGenre(10402)}
-        className={activeGenre === 10402 ? styles.ActiveButton : styles.Button}
-      >
-        Music
-      </button>
-      <button
-        onClick={() => setActiveGenre(99)}
-        className={activeGenre === 99 ? styles.ActiveButton : styles.Button}
-      >
-        Documentary
-      </button>
     </div>
   );
 }
