@@ -5,7 +5,8 @@ import Error from "./components/Error/Error";
 import Navbar from "./components/Navbar/Navbar";
 import SingleMovie from "./components/SingleMovie/SingleMovie";
 import Home from "./pages/Home";
-import Popular from "./pages/Popular";
+import Upcoming from "./pages/Upcoming";
+import WatchList from "./pages/WatchList";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<SingleMovie />} />
-        <Route path="/popular" element={<Popular/>} />
+        <Route path="/upcoming" element={<Upcoming/>} />
+        <Route path="/watchList" element={<WatchList/>} />
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
