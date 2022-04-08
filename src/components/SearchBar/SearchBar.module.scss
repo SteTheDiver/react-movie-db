@@ -6,16 +6,19 @@
   .Form {
     display: flex;
     flex-direction: column;
-    width: 50%;
-    border: none;
+    // width: 50%;
+    // border: 1px solid #1db989;
+    // background: rgba(46, 45, 45, 0.55);
+    // padding: 10px;
+    // border-radius: 10px;
 
     .Input {
-      border-bottom: 1px solid whitesmoke;
+      border-bottom: 1px solid  #1db989;
       border-top: none;
       border-left: none;
       border-right: none;
       background: transparent;
-      padding: 0 0 5px 5px;
+      padding-bottom:  5px;
       font-size: 15px;
       color: whitesmoke;
     }
