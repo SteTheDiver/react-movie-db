@@ -13,7 +13,8 @@ const AppProvider = ({ children }) => {
 
   const api = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
-  // const url = `${API_ENDPOINT}&s=${query}`;
+  const type = query ? "search" : "discover";
+  const noidea = query ? `&query=${query}` : "";
 
   const fetchMovies = async (url) => {
     setLoading(true);
@@ -34,36 +35,45 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  // const fetchMovies = async (url) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch(url);
-  //     const data = await response.json();
 
-  //     if (data.Response === "True") {
-  //       setMovies(data.Search || data);
+  const fetchPopular = async (url) => {
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data.results) {
+        setPopular(data.results);
+        // setFiltered(data.results);
+        setError({ show: false, message: "" });
+        console.log(data.results);
+      } else {
+        setError({ show: true, message: data.Error });
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //       setError({ show: false, msg: "" });
-  //     } else {
-  //       setError({ show: true, msg: data.Error });
-  //     }
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  const apiOmdb = `http://www.omdbapi.com/?apikey=48050f69&s=${query}`;
-  const endpoint = `https://api.themoviedb.org/3/movie/popular?${api}`;
-  const secondEndPoint = `https://api.themoviedb.org/3/discover/movie?${api}`;
+  const endpoint = `https://api.themoviedb.org/3/movie/upcoming?${api}`;
+  const secondEndPoint = `https://api.themoviedb.org/3/${type}/movie?${api}${noidea}
+  `;
 
   useEffect(() => {
     fetchMovies(secondEndPoint);
-  }, [query]);
+  }, []);
 
-  // useEffect(()=> {
-  //   fetchPopular(secondEndPoint)
-  // }, [])
+  const searchMovies = (e) => {
+    e.preventDefault();
+    fetchMovies(secondEndPoint);
+ 
+  };
+
+  console.log(secondEndPoint)
+
+  useEffect(()=> {
+    fetchPopular(endpoint)
+  }, [])
 
   return (
     <AppContext.Provider
@@ -78,6 +88,7 @@ const AppProvider = ({ children }) => {
         setActiveGenre,
         filtered,
         setFiltered,
+        searchMovies
       }}
     >
       {children}
