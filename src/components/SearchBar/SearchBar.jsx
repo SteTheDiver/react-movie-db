@@ -4,12 +4,14 @@ import { useGlobalContext } from "../../context";
 import styles from "./SearchBar.module.scss";
 
 function SearchBar() {
-  const { query, setQuery, error } = useGlobalContext();
+  const { query, setQuery, error, searchMovies } = useGlobalContext();
+
+  console.log(query)
   return (
     <main className={styles.SearchBar}>
       <form
         action=""
-        onSubmit={(e) => e.preventDefault()}
+        onSubmit={searchMovies}
         className={styles.Form}
       >
         <input
