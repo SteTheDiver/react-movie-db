@@ -1,0 +1,65 @@
+.SingleMovie {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+//   width: 80%;
+
+  .Container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 auto;
+    width: 80%;
+
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+    }
+
+    .InfoContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+
+      .Header {
+        display: flex;
+        flex-direction: column;
+
+        .Title,
+        .Text {
+          color: white;
+          margin-bottom: 1em;
+          font-size: 2.5em;
+          font-weight: 600;
+          line-height: 150%;
+        }
+
+        .Text {
+          font-size: 1.1em;
+          font-weight: 400;
+        }
+      }
+      .Button {
+        border-radius: 15px;
+        padding: 10px;
+        border: none;
+        background: #1db989;
+        color: white;
+        width: fit-content;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .Container {
+      flex-direction: row;
+    }
+  }
+}
