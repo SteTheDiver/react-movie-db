@@ -3,9 +3,8 @@ import { Link } from "react-router-dom";
 
 import styles from "./Navbar.module.scss";
 
-// import MenuIcon from "@mui/icons-material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
 // import CloseIcon from "@mui/icons-material/Close";
-// import { links } from "../../data";
 
 import SearchBar from "../SearchBar/SearchBar";
 
@@ -16,13 +15,16 @@ function Navbar() {
     setShowLinks(!showLinks);
   };
 
+  // const isHome =
+  //   window.location.pathname === "/" ? movies : filtered;
+
   return (
     <nav className={styles.Navbar}>
       <div className={styles.HeaderContainer}>
         <button className={styles.HamburgerMenu} onClick={toggleLinks}>
-          {/* <MenuIcon fontSize="large" className={styles.ActiveMenuIcon} /> */}
+          <MenuIcon fontSize="large" className={styles.ActiveMenuIcon} />
         </button>
-        <aside
+        <div
           className={
             showLinks
               ? `${styles.LinksContainer} ${styles.ShowLinksContainer}`
@@ -32,12 +34,16 @@ function Navbar() {
           <ul className={styles.Links}>
             <li className={styles.Link}>
               <Link to="/" className={styles.Item} onClick={toggleLinks}>
-                <span className={styles.Item}>Home</span>
+                Home
               </Link>
             </li>
             <li className={styles.Link}>
-              <Link to="/popular" className={styles.Item} onClick={toggleLinks}>
-                <span className={styles.Item}>Popular</span>
+              <Link
+                to="/upcoming"
+                className={styles.Item}
+                onClick={toggleLinks}
+              >
+                Upcoming
               </Link>
             </li>
             <li className={styles.Link}>
@@ -46,11 +52,11 @@ function Navbar() {
                 className={styles.Item}
                 onClick={toggleLinks}
               >
-                <span className={styles.Item}>Watch List</span>
+                Watch List
               </Link>
             </li>
           </ul>
-        </aside>
+        </div>
         <section className={styles.Logo}>
           <SearchBar />
         </section>
