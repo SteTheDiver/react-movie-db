@@ -3,8 +3,8 @@
 .Navbar {
   position: sticky;
   width: 100%;
-//   background-color: rgb(35, 35, 177);
-  background-color: rgba(0,0,0,.85);
+  //   background-color: rgb(35, 35, 177);
+  background-color: rgba(0, 0, 0, 0.85);
   margin-bottom: 20px;
   z-index: 1000;
 
@@ -15,7 +15,7 @@
     align-items: center;
     align-content: center;
     padding: 30px;
-    width: 100%;
+    // width: 100%;
     margin: 0 auto;
 
     .HamburgerMenu {
@@ -26,18 +26,19 @@
 
       &:hover {
         // color: rgb(83, 204, 124);
-        color: seagreen;
+        color: #1db989;
         transform: rotate(90deg);
       }
 
       &:hover .ActiveMenuIcon {
         // color: rgb(83, 204, 124);
-        color: seagreen;
+        color: #1db989;
       }
 
       .ActiveMenuIcon {
-        // color: white;
-        font-weight: 200;
+        color: white;
+        font-size: 40px;
+        font-weight: 100;
         // animation: spin 0.5s linear;
       }
     }
@@ -51,7 +52,8 @@
     .LinksContainer {
       display: block;
       position: absolute;
-      background: radial-gradient(at top left, #fffbf9 0%, #f0dfd2 100%);
+      // background: radial-gradient(at top left, #fffbf9 0%, #f0dfd2 100%);
+      background-color: rgba(0, 0, 0, 1);
       left: 0;
       top: 100%;
       padding: 0;
@@ -92,15 +94,11 @@
         margin-top: 3em;
 
         .Item {
-        //   color: #cc9955;
           color: #1db989;
-          font-weight: 700;
+          font-weight: 400;
           text-decoration: none;
-
-          &:hover {
-            // color:  rgb(83, 204, 124);
-            color: seagreen;
-          }
+          text-transform: uppercase;
+          // opacity: 0.75;
         }
       }
 
@@ -121,20 +119,40 @@
         display: flex;
         flex-direction: row;
         margin: 0;
+        position: relative;
+      }
+
+      .Item::before {
+        transition: all ease-in-out 550ms;
+        display: block;
+        content: "";
+        height: 2px;
+        background-color: #1db989;
+        position: relative;
+        width: 0%;
+        top: 20px;
+      }
+
+      .Item:hover::before {
+        display: block;
+        position: relative;
+        width: 100%;
+
+        // background-color: red;
       }
     }
   }
 
   @media screen and (min-width: 900px) {
     .HeaderContainer {
-      max-width: 1200px;
-      width: 95%;
+      // max-width: 1200px;
+      width: 80%;
     }
   }
   @media screen and (min-width: 1300px) {
     .HeaderContainer {
-      max-width: 1400px;
-      width: 70%;
+      // max-width: 1400px;
+      width: 80%;
     }
   }
 
