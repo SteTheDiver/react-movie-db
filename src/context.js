@@ -14,7 +14,7 @@ const AppProvider = ({ children }) => {
   const api = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
   const type = query ? "search" : "discover";
-  const noidea = query ? `&query=${query}` : "";
+  const search = query ? `&query=${query}` : "";
 
   const fetchMovies = async (url) => {
     setLoading(true);
@@ -34,7 +34,6 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
   };
-
 
   const fetchPopular = async (url) => {
     setLoading(true);
@@ -56,7 +55,7 @@ const AppProvider = ({ children }) => {
   };
 
   const endpoint = `https://api.themoviedb.org/3/movie/upcoming?${api}`;
-  const secondEndPoint = `https://api.themoviedb.org/3/${type}/movie?${api}${noidea}
+  const secondEndPoint = `https://api.themoviedb.org/3/${type}/movie?${api}${search}
   `;
 
   useEffect(() => {
@@ -66,14 +65,13 @@ const AppProvider = ({ children }) => {
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(secondEndPoint);
- 
   };
 
-  console.log(secondEndPoint)
+  console.log(secondEndPoint);
 
-  useEffect(()=> {
-    fetchPopular(endpoint)
-  }, [])
+  useEffect(() => {
+    fetchPopular(endpoint);
+  }, []);
 
   return (
     <AppContext.Provider
@@ -88,7 +86,8 @@ const AppProvider = ({ children }) => {
         setActiveGenre,
         filtered,
         setFiltered,
-        searchMovies
+        searchMovies,
+        setError,
       }}
     >
       {children}
