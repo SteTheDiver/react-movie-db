@@ -8,10 +8,6 @@ import MoviesList from "../components/MoviesList/MoviesList";
 
 function Upcoming() {
 
-  const {  popular, loading } = useGlobalContext();
-
-  console.log(popular)
-
   return (
     <div
       style={{
