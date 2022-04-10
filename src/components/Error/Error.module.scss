@@ -1,0 +1,27 @@
+.Error {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+
+
+  .Text {
+      font-size: 60px;
+      font-weight: 400;
+      color:whitesmoke;
+  }
+
+  .Button {
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    background: #1db989;
+    color: white;
+    width: fit-content;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+  } 
+}
