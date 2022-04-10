@@ -8,7 +8,7 @@ const AppProvider = ({ children }) => {
   const [error, setError] = useState({ show: false, message: "" });
   const [query, setQuery] = useState("");
   const [filtered, setFiltered] = useState([]);
-  const [activeGenre, setActiveGenre] = useState("");
+  const [activeGenre, setActiveGenre] = useState(0);
   const [popular, setPopular] = useState([]);
 
   const api = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
@@ -23,9 +23,7 @@ const AppProvider = ({ children }) => {
       const data = await response.json();
       if (data.results) {
         setMovies(data.results);
-        // setFiltered(data.results);
         setError({ show: false, message: "" });
-        console.log(data.results);
       } else {
         setError({ show: true, message: data.Error });
       }
@@ -44,7 +42,6 @@ const AppProvider = ({ children }) => {
         setPopular(data.results);
         // setFiltered(data.results);
         setError({ show: false, message: "" });
-        console.log(data.results);
       } else {
         setError({ show: true, message: data.Error });
       }
@@ -60,18 +57,17 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     fetchMovies(secondEndPoint);
-  }, []);
+  }, [secondEndPoint]);
 
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(secondEndPoint);
   };
 
-  console.log(secondEndPoint);
 
   useEffect(() => {
     fetchPopular(endpoint);
-  }, []);
+  }, [endpoint]);
 
   return (
     <AppContext.Provider
