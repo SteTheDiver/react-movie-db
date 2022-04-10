@@ -2,6 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../../context";
 import styles from "./MoviesList.module.scss";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 const url =
   "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
@@ -11,53 +12,45 @@ const imageUrl = "https://image.tmdb.org/t/p/w500";
 function MoviesList() {
   const { movies, popular, loading, filtered } = useGlobalContext();
 
-  const moviesArray = window.location.pathname == "/popular" ? filtered : movies;
+  const moviesArray =
+    window.location.pathname !== "/upcoming" ? movies : filtered;
 
   if (loading) {
     return <div className="loading">Loading</div>;
   }
   return (
     <main className={styles.MoviesList}>
-      <section className={styles.Grid}>
+      <motion.div layout  className={styles.Grid}>
         {moviesArray.map((movie) => {
-          const {
-            Id: id,
-            backdrop_path,
-            Poster,
-            title,
-            Title: tmdbTitle,
-          } = movie;
-          const customImage =
-            window.location.pathname !== "/popular"
-              ? Poster
-              : imageUrl + backdrop_path;
-          const customTitle =
-            window.location.pathname !== "/popular" ? tmdbTitle : title;
+          const { id, backdrop_path, title } = movie;
+
+          const renderImage = () => {
+            let cover = "";
+            if (backdrop_path === null) {
+              cover = url;
+            } else {
+              cover = `${imageUrl + backdrop_path} `;
+            }
+            return cover;
+          };
+
           return (
-            <Link
-              to={`movies/${id}`}
-              key={id}
-              className={styles.MovieContainer}
-            >
-              <article>
-                <img
-                  className={styles.Image}
-                  src={
-                    Poster || (backdrop_path !== null && "N/A")
-                      ? customImage
-                      : url
-                  }
-                  alt={title}
-                />
+            <motion.div layout animate={{opacity:1}} initial={{opacity:0}}>
+              <Link
+                to={`movies/${id}`}
+                key={id}
+                className={styles.MovieContainer}
+              >
+                <img className={styles.Image} src={renderImage()} alt={title} />
 
                 <div className={styles.Info}>
-                  <span className={styles.Text}>{customTitle}</span>
+                  <span className={styles.Text}>{title}</span>
                 </div>
-              </article>
-            </Link>
+              </Link>
+            </motion.div>
           );
         })}
-      </section>
+      </motion.div>
     </main>
   );
 }
