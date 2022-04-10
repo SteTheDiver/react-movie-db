@@ -6,7 +6,6 @@ import styles from "./SearchBar.module.scss";
 function SearchBar() {
   const { query, setQuery, error, searchMovies } = useGlobalContext();
 
-  console.log(query)
   return (
     <main className={styles.SearchBar}>
       <form
