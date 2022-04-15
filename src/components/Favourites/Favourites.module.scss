@@ -1,0 +1,61 @@
+.Favourites {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // align-items: center;
+  // align-content: center;
+  // width: 80%;
+
+  .Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 90%;
+    padding: 0.5%;
+    scale: 1;
+    margin: 10px;
+
+    img {
+      width: 20%;
+      height: 100%;
+      object-fit: contain;
+    }
+    span {
+      color: white;
+    }
+
+    .Icon {
+      color: white;
+      // background: red;
+
+      &:hover {
+        color: red;
+      }
+    }
+
+    &:hover img {
+      scale: 1;
+    }
+  }
+  .Button {
+    border-radius: 15px;
+    padding: 10px;
+    border: none;
+    color: white;
+    width: fit-content;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    background: linear-gradient(to left, #1db989 50%, red 50%) right;
+    background-size: 200%;
+    transition: 0.3s ease-out;
+    margin-top: 20px;
+
+    &:hover {
+      background-position: left;
+    }
+  }
+}
