@@ -1,0 +1,31 @@
+.Modal {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: rgba(223, 50, 50, 0.8);
+  bottom: 1%;
+  right: 1%;
+  height: 50px;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 10px;
+  animation: fadeIn 1s;
+
+  .Text {
+    font-size: 400;
+    font-size: 15px;
+    color: white;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
