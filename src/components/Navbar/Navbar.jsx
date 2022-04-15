@@ -52,7 +52,7 @@ function Navbar() {
                 className={styles.Item}
                 onClick={toggleLinks}
               >
-                Watch List
+                My Watch List
               </Link>
             </li>
           </ul>
