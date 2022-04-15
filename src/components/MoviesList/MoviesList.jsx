@@ -20,7 +20,7 @@ function MoviesList() {
   }
   return (
     <main className={styles.MoviesList}>
-      <motion.div layout  className={styles.Grid}>
+      <motion.div layout className={styles.Grid}>
         {moviesArray.map((movie) => {
           const { id, backdrop_path, title } = movie;
 
@@ -35,12 +35,13 @@ function MoviesList() {
           };
 
           return (
-            <motion.div layout animate={{opacity:1}} initial={{opacity:0}}>
-              <Link
-                to={`movies/${id}`}
-                key={id}
-                className={styles.MovieContainer}
-              >
+            <motion.div
+              layout
+              animate={{ scale: 1 }}
+              initial={{ scale: 0 }}
+              key={id}
+            >
+              <Link to={`movies/${id}`} className={styles.MovieContainer}>
                 <img className={styles.Image} src={renderImage()} alt={title} />
 
                 <div className={styles.Info}>
