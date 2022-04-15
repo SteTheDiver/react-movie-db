@@ -10,8 +10,12 @@ const AppProvider = ({ children }) => {
   const [filtered, setFiltered] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
   const [popular, setPopular] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [showModal, setShowModal] = useState({ show: false, message: "" });
+  const [movie, setMovie] = useState([]);
+  const [actors, setActors] = useState([]);
 
-  const api = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
+  const apiKey = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
   const type = query ? "search" : "discover";
   const search = query ? `&query=${query}` : "";
@@ -51,8 +55,8 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const endpoint = `https://api.themoviedb.org/3/movie/upcoming?${api}`;
-  const secondEndPoint = `https://api.themoviedb.org/3/${type}/movie?${api}${search}
+  const endpoint = `https://api.themoviedb.org/3/movie/upcoming?${apiKey}`;
+  const secondEndPoint = `https://api.themoviedb.org/3/${type}/movie?${apiKey}${search}
   `;
 
   useEffect(() => {
@@ -64,10 +68,30 @@ const AppProvider = ({ children }) => {
     fetchMovies(secondEndPoint);
   };
 
-
   useEffect(() => {
     fetchPopular(endpoint);
   }, [endpoint]);
+
+  const addToList = (item) => {
+    setFavourites([...favourites, item]);
+    setShowModal({
+      show: true,
+      message: "The movie has been added to your list",
+    });
+  };
+
+  const removeFromList = (item) => {
+    let tempFav = favourites.filter((listItem) => listItem.id !== item.id);
+    setFavourites(tempFav);
+    setShowModal({
+      show: true,
+      message: "The movie has been removed from your list",
+    });
+  };
+
+  const clearList = () => {
+    setFavourites([]);
+  };
 
   return (
     <AppContext.Provider
@@ -75,6 +99,7 @@ const AppProvider = ({ children }) => {
         loading,
         error,
         movies,
+        apiKey,
         popular,
         query,
         setQuery,
@@ -84,6 +109,13 @@ const AppProvider = ({ children }) => {
         setFiltered,
         searchMovies,
         setError,
+        favourites,
+        setFavourites,
+        addToList,
+        removeFromList,
+        setShowModal,
+        showModal,
+        clearList,
       }}
     >
       {children}
