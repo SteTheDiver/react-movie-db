@@ -1,0 +1,35 @@
+@import "react-alice-carousel/lib/scss/alice-carousel.scss";
+
+
+.carouselItem {
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+//   height: 300px;
+//   width: 100%;
+  padding: 5px;
+
+  .ActorImage {
+    // object-fit: cover;
+    min-height: 100%;
+    width: 100%;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    // margin: 10px;
+    // height: 100%;
+    // max-height: 100%;
+  }
+
+  .ActorName {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    // padding: 7px;
+    font-size:0.9em;
+    font-weight: 400;
+    color: white;
+    text-align: left;
+    align-self: flex-start;
+  }
+}
