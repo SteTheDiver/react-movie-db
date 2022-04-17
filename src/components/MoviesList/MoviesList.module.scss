@@ -45,17 +45,13 @@
           font-weight: 600;
           margin-left: 10px;
         }
-        .Icon {
+        .Rate {
           color: #1db989;
-          font-size: 1.5em;
-          font-weight: 600;
+          font-size: 1em;
+          font-weight: 700;
           margin-right: 10px;
 
         }
-        // svg:first-child():hover {
-        //   color: #1db989;
-        //   opacity: 1;
-        // }
       }
       &:hover .Info {
         transform: translateY(0%);

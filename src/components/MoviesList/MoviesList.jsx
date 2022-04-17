@@ -3,8 +3,7 @@ import { useGlobalContext } from "../../context";
 import styles from "./MoviesList.module.scss";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import FavoriteTwoToneIcon from "@mui/icons-material/FavoriteTwoTone";
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
 
 const url =
   "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
@@ -12,7 +11,7 @@ const url =
 const imageUrl = "https://image.tmdb.org/t/p/w500";
 
 function MoviesList() {
-  const { movies, popular, loading, filtered, addToList } = useGlobalContext();
+  const { movies, loading, filtered } = useGlobalContext();
 
   const moviesArray =
     window.location.pathname !== "/upcoming" ? movies : filtered;
@@ -24,7 +23,7 @@ function MoviesList() {
     <main className={styles.MoviesList}>
       <motion.div layout className={styles.Grid}>
         {moviesArray.map((movie) => {
-          const { id, backdrop_path, title } = movie;
+          const { id, backdrop_path, title, vote_average } = movie;
 
           const renderImage = () => {
             let cover = "";
@@ -48,7 +47,7 @@ function MoviesList() {
 
                 <div className={styles.Info}>
                   <span className={styles.Text}>{title}</span>
-                  <FavoriteTwoToneIcon className={styles.Icon} onClick={()=> addToList(movie)}/>
+                  <span className={styles.Rate}>{vote_average}</span>
                 </div>
               </Link>
             </motion.div>
