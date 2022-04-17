@@ -58,7 +58,7 @@ function Navbar() {
           </ul>
         </div>
         <section className={styles.Logo}>
-          <SearchBar />
+          {/* <SearchBar /> */}
         </section>
       </div>
     </nav>
