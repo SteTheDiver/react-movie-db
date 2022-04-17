@@ -5,14 +5,14 @@
   justify-content: center;
   align-items: center;
   background: rgba(223, 50, 50, 0.8);
-  bottom: 1%;
-  right: 1%;
+  bottom:30vh;
+  right: 20vw;
   height: 50px;
   width: fit-content;
   margin: 0 auto;
   padding: 10px;
   border-radius: 10px;
-  animation: fadeIn 1s;
+  animation: fadeIn 4s;
 
   .Text {
     font-size: 400;
@@ -21,11 +21,21 @@
   }
 }
 
+@media screen and (min-width:900px) {
+  .Modal {
+    bottom:1%;
+    right: 1%;
+  }
+}
+
 @keyframes fadeIn {
   0% {
     opacity: 0;
   }
-  100% {
+  40% {
     opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
