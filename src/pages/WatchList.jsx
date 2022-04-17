@@ -12,13 +12,16 @@ function WatchList() {
       style={{
         display: "flex",
         flexDirection: "column",
+        alignContent:"center",
+        alignItems:"center",
+        justifyContent:"center",
         margin: "0 auto",
         backgroundColor: "#071423",
-        height: "100vh"
+        width:"80%",
+        // height: "100vh"
       }}
     >
-      <span>My Watch List</span>
-      {favourites.length === 0 ? <span>No movies </span> : <Favourites />}
+      {favourites.length === 0 ? <h1 style={{color:"white", fontSize:"50px"}}>No movies </h1> : <Favourites />}
     </div>
   );
 }
