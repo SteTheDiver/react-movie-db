@@ -6,11 +6,7 @@
   .Form {
     display: flex;
     flex-direction: column;
-    // width: 50%;
-    // border: 1px solid #1db989;
-    // background: rgba(46, 45, 45, 0.55);
-    // padding: 10px;
-    // border-radius: 10px;
+    width: 400px;
 
     .Input {
       border-bottom: 1px solid  #1db989;
@@ -19,11 +15,23 @@
       border-right: none;
       background: transparent;
       padding-bottom:  5px;
-      font-size: 15px;
+      font-size: 18px;
       color: whitesmoke;
     }
   }
+
+  @media screen and (min-width:900px) {
+    .Form {
+      width: 30%;
+    }
+  }
 }
+  @media screen and (min-width:1000px) {
+    .Form {
+      width: 20%;
+    }
+  }
+
 
 input:focus,
 textarea:focus,
