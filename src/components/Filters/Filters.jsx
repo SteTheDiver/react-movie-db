@@ -22,7 +22,7 @@ function Filters() {
 
 
   return (
-    <div>
+    <div className={styles.Container}>
       <button
         onClick={() => setActiveGenre(0)}
         className={activeGenre === 0 ? styles.ActiveButton : styles.Button}
@@ -46,12 +46,6 @@ function Filters() {
         className={activeGenre === 18 ? styles.ActiveButton : styles.Button}
       >
         Drama
-      </button>
-      <button
-        onClick={() => setActiveGenre(878)}
-        className={activeGenre === 878 ? styles.ActiveButton : styles.Button}
-      >
-        Science Fiction
       </button>
     </div>
   );

@@ -1,21 +1,22 @@
-.Button, .ActiveButton {
-  border-radius: 15px;
-  padding: 8px;
-  margin-right: 20px;
-  border: none;
-  background: rgb(221, 208, 208);
-  background: #1db989;
-  color: white;
-  // color: #071423;
-  cursor: pointer;
-  min-width: 80px;
-  font-size: 14px;
-  
+.Container {
+  display: flex;
+
+  .Button,
+  .ActiveButton {
+    border-radius: 15px;
+    padding: 8px;
+    margin-right: 20px;
+    border: none;
+    background: rgb(221, 208, 208);
+    background: #1db989;
+    color: white;
+    // color: #071423;
+    cursor: pointer;
+    min-width: 80px;
+    font-size: 14px;
+  }
+
+  .ActiveButton {
+    border: 2px solid whitesmoke;
+  }
 }
-
-.ActiveButton {
-  border: 2px solid whitesmoke;
-  
-}
-
-
