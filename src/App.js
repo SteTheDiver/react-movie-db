@@ -15,7 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies/:id" element={<SingleMovie />} />
-        <Route path="upcoming/movies/:id" element={<SingleMovie />} />
+        <Route path="/upcoming/movies/:id" element={<SingleMovie />} />
+        <Route path="/watchList/movies/:id" element={<SingleMovie />} />
         <Route path="/upcoming" element={<Upcoming/>} />
         <Route path="/watchList" element={<WatchList/>} />
         <Route path="*" element={<Error />} />
