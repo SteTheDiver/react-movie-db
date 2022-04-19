@@ -74,9 +74,7 @@ function SingleMovie() {
     fetchMovie(apiMovie)
   }, [apiMovie, setError]);
 
-  useEffect(() => {
-    setTimer();
-  }, []);
+
 
   const setTimer = () => {
     // clear any existing timer
@@ -86,10 +84,14 @@ function SingleMovie() {
 
     // hide after `delay` milliseconds
     timer = setTimeout(() => {
-      setShowModal(!showModal);
+      setShowModal(!showModal.show);
       timer = null;
     }, 3000);
   };
+
+  useEffect(() => {
+    setTimer();
+  }, [showModal]);
 
   if (loading) {
     return <div>This is loading</div>;
