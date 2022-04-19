@@ -40,7 +40,7 @@ const Carousel = (props) => {
 
   return (
     <AliceCarousel
-      autoPlay
+      // autoPlay
       infinite
       responsive={responsive}
       disableButtonsControls
