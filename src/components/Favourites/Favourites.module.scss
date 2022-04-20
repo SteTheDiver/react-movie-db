@@ -34,30 +34,42 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
-        // width: 100%;
-        padding: 15px;
-
-
-
-        .Info {
+        width: 100%;
+        
+        .FooterWrapper {
+          width: 100%;
+          padding: 15px;
           display: flex;
-          flex-direction: column;
-          flex-grow: 1;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
 
-          span {
+          .Info {
+            display: flex;
+            flex-direction: column;
+            // flex-grow: 1;
+
+            span {
+              color: white;
+              font-size: 15px;
+            }
+          }
+
+          .Icon {
             color: white;
-            font-size: 15px;
+            cursor: pointer;
+            // flex-grow: 1;
+
+            &:hover {
+              color: red;
+            }
           }
         }
+      }
 
-        .Icon {
-          color: white;
-          cursor: pointer;
-          flex-grow: 1;
-
-          &:hover {
-            color: red;
-          }
+      @media screen and (min-width: 1000px) {
+        .Footer {
+          width: 100%;
         }
       }
 

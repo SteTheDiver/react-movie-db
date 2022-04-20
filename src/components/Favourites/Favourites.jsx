@@ -26,24 +26,26 @@ function Favourites() {
                 />
               </Link>
               <footer className={styles.Footer}>
-                <section className={styles.Info}>
-                  <span>{favourite.title}</span>
-                  <span> Released: {favourite.release_date}</span>
-                </section>
-                <CancelIcon
-                  onClick={() => removeFromList(favourite)}
-                  className={styles.Icon}
-                />
+                <div className={styles.FooterWrapper}>
+                  <section className={styles.Info}>
+                    <span>{favourite.title}</span>
+                    <span> Released: {favourite.release_date}</span>
+                  </section>
+                  <CancelIcon
+                    onClick={() => removeFromList(favourite)}
+                    className={styles.Icon}
+                  />
+                </div>
               </footer>
             </article>
           );
         })}
       </div>
-        {favourites.length > 0 ? (
-          <button className={styles.Button} onClick={() => clearList()}>
-            clear list
-          </button>
-        ) : null}
+      {favourites.length > 0 ? (
+        <button className={styles.Button} onClick={() => clearList()}>
+          clear list
+        </button>
+      ) : null}
     </main>
   );
 }
