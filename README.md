@@ -1,5 +1,7 @@
 # The Movie DB app
 
+A movie database with a useful watching list to save the movies you want to watch
+
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
