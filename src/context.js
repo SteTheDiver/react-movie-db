@@ -12,9 +12,6 @@ const AppProvider = ({ children }) => {
   const [popular, setPopular] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [showModal, setShowModal] = useState({ show: false, message: "" });
-  const [movie, setMovie] = useState([]);
-  const [actors, setActors] = useState([]);
-
   const apiKey = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
   const type = query ? "search" : "discover";
@@ -44,7 +41,6 @@ const AppProvider = ({ children }) => {
       const data = await response.json();
       if (data.results) {
         setPopular(data.results);
-        // setFiltered(data.results);
         setError({ show: false, message: "" });
       } else {
         setError({ show: true, message: data.Error });
@@ -92,6 +88,7 @@ const AppProvider = ({ children }) => {
   const clearList = () => {
     setFavourites([]);
   };
+
 
   return (
     <AppContext.Provider
