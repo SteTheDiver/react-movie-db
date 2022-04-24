@@ -22,7 +22,7 @@ function Filters() {
 
 
   return (
-    <div className={styles.Container}>
+    <div className={styles.Filters}>
       <button
         onClick={() => setActiveGenre(0)}
         className={activeGenre === 0 ? styles.ActiveButton : styles.Button}
