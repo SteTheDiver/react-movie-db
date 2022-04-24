@@ -158,7 +158,7 @@ function SingleMovie() {
             {showModal.show ? (
               <Modal message={showModal.message} show={showModal.show} />
             ) : null}
-             <Link to="/watchlist">
+             <Link to="/watchList">
               <button className={styles.Button}>Watch List</button>
             </Link>
           </footer>
