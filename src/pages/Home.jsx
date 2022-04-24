@@ -4,17 +4,10 @@ import SearchBar from "../components/SearchBar/SearchBar";
 
 function Home() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        margin: "0 auto",
-        width: "80%",
-      }}
-    >
+    <>
       <SearchBar />
       <MoviesList />
-    </div>
+    </>
   );
 }
 
