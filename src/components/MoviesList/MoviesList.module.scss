@@ -1,8 +1,10 @@
 .MoviesList {
-  margin: 30px 0;
+  margin: 30px auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 30px auto;
+  max-width: 90%;
 
   .Grid {
     display: grid;
