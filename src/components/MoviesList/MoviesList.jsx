@@ -1,9 +1,10 @@
 import React from "react";
-import { useGlobalContext } from "../../context";
-import styles from "./MoviesList.module.scss";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
+import { useGlobalContext } from "../../context";
+import styles from "./MoviesList.module.scss";
+import Loader from "../Loader/Loader";
 
 const url =
   "https://www.publicdomainpictures.net/pictures/280000/velka/not-found-image-15383864787lu.jpg";
@@ -17,7 +18,7 @@ function MoviesList() {
     window.location.pathname !== "/upcoming" ? movies : filtered;
 
   if (loading) {
-    return <div className="loading">Loading</div>;
+    return <Loader />;
   }
   return (
     <main className={styles.MoviesList}>
