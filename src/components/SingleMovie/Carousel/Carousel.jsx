@@ -12,7 +12,11 @@ const noPicture =
 const Carousel = (props) => {
   const items = props.actors.slice(0, 10).map((actor) => (
     <div className={styles.carouselItem}>
-      <a href={`https://en.wikipedia.org/wiki/${actor.name}`} target="_blank" rel="noreferrer">
+      <a
+        href={`https://en.wikipedia.org/wiki/${actor.name}`}
+        target="_blank"
+        rel="noreferrer"
+      >
         <img
           src={
             actor.profile_path ? `${imageUrl}/${actor.profile_path}` : noPicture
@@ -40,7 +44,8 @@ const Carousel = (props) => {
 
   return (
     <AliceCarousel
-      // autoPlay
+      animationDuration={800}
+      autoPlay
       infinite
       responsive={responsive}
       disableButtonsControls
