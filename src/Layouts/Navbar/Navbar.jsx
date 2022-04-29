@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import logo from "../../images/logo.png"
+
 import styles from "./Navbar.module.scss";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -52,7 +54,7 @@ function Navbar() {
           </ul>
         </div>
         <section className={styles.Logo}>
-          {/* <SearchBar /> */}
+          <img src={logo} alt="" style={{width:"45px"}}/>
         </section>
       </div>
     </nav>
