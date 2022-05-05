@@ -8,24 +8,31 @@ function WatchList() {
 
   console.log(favourites, "fav");
   return (
-    <>
+    <div style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      color: "white",
+      fontSize: "50px",
+      height:"100%"
+    }}>
       {favourites.length === 0 ? (
-        <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            color: "white",
-            fontSize: "50px",
-            marginTop:"30px"
-          }}
+        <span
+          // style={{
+          //   display: "flex",
+          //   justifyContent: "center",
+          //   alignItems: "center",
+          //   color: "white",
+          //   fontSize: "50px",
+          //   marginTop:"30px",
+          // }}
         >
           No movies{" "}
-        </h1>
+        </span>
       ) : (
         <Favourites />
       )}
-    </>
+    </div>
   );
 }
 
