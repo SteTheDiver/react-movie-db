@@ -17,7 +17,6 @@ function SingleMovie() {
     favourites,
     removeFromList,
     showModal,
-    setShowModal,
   } = useGlobalContext();
 
   const { id } = useParams();
@@ -25,73 +24,54 @@ function SingleMovie() {
   const [actors, setActors] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  let timer = null;
-
   const apiMovie = `https://api.themoviedb.org/3/movie/${id}?${apiKey}&append_to_response=videos`;
   const apiCast = `https://api.themoviedb.org/3/movie/${id}/credits?${apiKey}`;
 
-  useEffect(() => {
-    const fetchCast = async (url) => {
-      setLoading(true);
-      try {
-        const response = await fetch(url);
-  
-        const data = await response.json();
-        if (data) {
-          setActors(data.cast);
-          setError({ show: false, message: "" });
-        } else {
-          setError({ show: true, message: data.Error });
-        }
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
+
+  const fetchCast = async (url) => {
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+
+      const data = await response.json();
+      if (data) {
+        setActors(data.cast);
+        setError({ show: false, message: "" });
+      } else {
+        setError({ show: true, message: data.Error });
       }
-    };
-    fetchCast(apiCast)
-  }, [apiCast, setError]);
-
-  useEffect(() => {
-    const fetchMovie = async (url) => {
-      setLoading(true);
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        if (data) {
-          setMovie(data);
-          // setFiltered(data.results);
-          setError({ show: false, message: "" });
-          // console.log(error);
-        } else {
-          setError({ show: true, message: data.Error });
-          console.log(error);
-        }
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchMovie(apiMovie)
-  }, [apiMovie, setError]);
-
-
-
-  const setTimer = () => {
-    // clear any existing timer
-    if (timer != null) {
-      clearTimeout(timer);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
     }
-
-    // hide after `delay` milliseconds
-    timer = setTimeout(() => {
-      setShowModal(!showModal.show);
-      timer = null;
-    }, 3000);
   };
 
+
+  const fetchMovie = async (url) => {
+    setLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data) {
+        setMovie(data);
+        setError({ show: false, message: "" });
+      } else {
+        setError({ show: true, message: data.Error });
+        console.log(error);
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // still having problems fetching again once the set timeout is runs
+
   useEffect(() => {
-    setTimer();
-  }, [showModal]);
+    fetchMovie(apiMovie);
+    fetchCast(apiCast);
+  }, [apiMovie, apiCast]);
+
 
   if (loading) {
     return <div>This is loading</div>;
@@ -129,7 +109,7 @@ function SingleMovie() {
       <YouTube
         videoId={key}
         ClassName={styles.Video}
-        opts={{ height: "500px", width: "100%"}}
+        opts={{ height: "500px", width: "100%" }}
       />
     );
   };
@@ -145,9 +125,7 @@ function SingleMovie() {
             <span className={styles.Title}>{movie.title}</span>
             <span className={styles.Text}>{movie.overview}</span>
             <div className={styles.Actors}>
-              <Carousel
-                actors={actors} id={id}
-              />
+              <Carousel actors={actors} id={id} />
             </div>
           </header>
           <footer className={styles.Footer}>
@@ -158,7 +136,7 @@ function SingleMovie() {
             {showModal.show ? (
               <Modal message={showModal.message} show={showModal.show} />
             ) : null}
-             <Link to="/watchList">
+            <Link to="/watchList">
               <button className={styles.Button}>Watch List</button>
             </Link>
           </footer>
