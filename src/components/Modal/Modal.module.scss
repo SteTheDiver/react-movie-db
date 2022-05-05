@@ -5,8 +5,8 @@
   justify-content: center;
   align-items: center;
   background: rgba(223, 50, 50, 0.8);
-  bottom:30vh;
-  right: 20vw;
+  bottom:1%;
+  right: 1%;
   height: 50px;
   width: fit-content;
   margin: 0 auto;
@@ -23,7 +23,7 @@
 
 @media screen and (min-width:900px) {
   .Modal {
-    bottom:1%;
+    bottom:30%;
     right: 1%;
   }
 }
