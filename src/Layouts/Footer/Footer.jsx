@@ -5,28 +5,61 @@ import styles from "./Footer.module.scss";
 import { useGlobalContext } from "../../context";
 
 function Footer() {
-  const [isWatchlist, setWatchlist] = useState(false);
+  const [position, setPosition] = useState("");
 
-  const {loading} = useGlobalContext();
+  const { loading } = useGlobalContext();
 
   let location = useLocation();
 
+  // let movie = location.pathname.includes("/movies") ? true : false;
+
+  // console.log(movie);
+
+  // if(!location.pathname.includes("/watchList")) {
+  //   setIsWatchlist(false)
 
   useEffect(() => {
-    if (
-      location.pathname.includes("/watchList") ||
-      location.pathname.includes("/movies") || loading
+    if (location.pathname.includes("/movies") && window.innerWidth < 800) {
+      setPosition("static");
+      console.log(position, "static");
+    } else if (
+      location.pathname.includes("/movies") &&
+      window.innerWidth > 800
     ) {
-      setWatchlist(true);
+      setPosition("fixed");
+      console.log(position, "fixed");
+    } else if (
+      location.pathname.includes("/watchList") &&
+      window.innerWidth > 800
+    ) {
+      setPosition("fixed");
+      console.log(position, "fixed");
+    } else if (
+      location.pathname.includes("/watchList") &&
+      window.innerWidth < 800
+    ) {
+      setPosition("fixed");
+      console.log(position, "fixed");
     } else {
-      setWatchlist(false);
+      setPosition("static");
     }
-  }, [location, isWatchlist, loading]);
+    // getPage();
+  }, [position, loading]);
+
+  // movies --> mobile = static
+  // movies --> desk = fixed
+  // watchlist --> mobile/desk = fixed
+  // home/upcoming --> mobile/desk = static  X
+
+  console.log(position);
+  console.log(location.pathname);
 
   return (
     <footer
       className={styles.Footer}
-      style={isWatchlist ? { position: "fixed" } : { position: "static" }}
+      // className={isWatchlist ? styles.WatchFooter : styles.Footer}
+      // className={styles.`${position}`}
+      style={{ position: `${position}` }}
     >
       <span>Powered by SteCoding 2022</span>
     </footer>
