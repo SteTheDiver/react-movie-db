@@ -16,7 +16,6 @@ function Favourites() {
     <main className={styles.Favourites}>
       <div className={styles.Grid}>
         {favourites.map((favourite) => {
-          console.log(favourite);
           return (
             <article className={styles.Container} key={favourite.id}>
               <Link to={`movies/${favourite.id}`}>
