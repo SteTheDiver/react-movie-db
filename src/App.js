@@ -1,6 +1,6 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { BrowserRouter, Routes, Route, Link, Outlet } from "react-router-dom";
 import Error from "./components/Error/Error";
 import Footer from "./Layouts/Footer/Footer";
 import Navbar from "./Layouts/Navbar/Navbar";
@@ -22,7 +22,7 @@ function App() {
         <Route path="/watchList" element={<WatchList/>} />
         <Route path="*" element={<Error />} />
       </Routes>
-      <Footer/>
+      {/* <Footer/> */}
     </BrowserRouter>
   );
 }
