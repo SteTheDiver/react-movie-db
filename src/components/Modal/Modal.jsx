@@ -11,8 +11,9 @@ function Modal(props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowModal(!showModal);
-    }, 4000);
-    return () => clearTimeout(timer);
+    }, 5000);
+    console.log('effect is active')
+    return () => clearTimeout(timer) , console.log('effect over');
   }, [setShowModal, showModal]);
 
 
