@@ -2,6 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 
 const AppContext = React.createContext();
 
+const getLocalStorage = () => {
+  let favourites = localStorage.getItem("favourites");
+
+  if (favourites) {
+    return JSON.parse(localStorage.getItem("favourites"));
+  } else {
+    return [];
+  }
+};
+
+
 const AppProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -10,15 +21,20 @@ const AppProvider = ({ children }) => {
   const [filtered, setFiltered] = useState([]);
   const [activeGenre, setActiveGenre] = useState(0);
   const [popular, setPopular] = useState([]);
-  const [favourites, setFavourites] = useState([]);
+  const [favourites, setFavourites] = useState(getLocalStorage());
   const [showModal, setShowModal] = useState({ show: false, message: "" });
   const apiKey = `&api_key=${process.env.REACT_APP_MOVIE_API_KEY}`;
 
   const type = query ? "search" : "discover";
   const search = query ? `&query=${query}` : "";
 
+
+
+
   const fetchMovies = async (url) => {
     setLoading(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -32,10 +48,15 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    return () => {
+      controller.abort();
+    };
   };
 
   const fetchPopular = async (url) => {
     setLoading(true);
+    const controller = new AbortController();
+    const signal = controller.signal;
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -49,6 +70,9 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       console.log(error);
     }
+    return () => {
+      controller.abort();
+    };
   };
 
   const endpoint = `https://api.themoviedb.org/3/movie/upcoming?${apiKey}`;
@@ -68,6 +92,10 @@ const AppProvider = ({ children }) => {
     fetchPopular(endpoint);
   }, [endpoint]);
 
+
+
+  
+
   const addToList = (item) => {
     setFavourites([...favourites, item]);
     setShowModal({
@@ -86,9 +114,14 @@ const AppProvider = ({ children }) => {
   };
 
   const clearList = () => {
-    setFavourites([]);
+    setFavourites({});
   };
 
+
+  useEffect(() => {
+    localStorage.setItem('favourites', JSON.stringify(favourites))
+  }, [favourites])
+  
 
   return (
     <AppContext.Provider
