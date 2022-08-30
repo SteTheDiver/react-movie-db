@@ -3,6 +3,8 @@ import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 import styles from "./Carousel.module.scss";
+
+
 const handleDragStart = (e) => e.preventDefault();
 
 const imageUrl = "https://image.tmdb.org/t/p/w500";

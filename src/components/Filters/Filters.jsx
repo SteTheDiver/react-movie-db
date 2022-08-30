@@ -4,12 +4,11 @@ import { useGlobalContext } from "../../context";
 import styles from "./Filters.module.scss";
 
 function Filters() {
-  const { popular, activeGenre, setActiveGenre, setFiltered, filtered } =
+  const { popular, activeGenre, setActiveGenre, setFiltered} =
     useGlobalContext();
 
   useEffect(() => {
     if (activeGenre === 0 || !activeGenre) {
-      console.log(activeGenre, "active genre")
       setFiltered(popular);
       return;
     }
